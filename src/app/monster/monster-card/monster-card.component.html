@@ -1,0 +1,9 @@
+<div class="monster-card" >
+    <img class="profile-img" src="../../../assets/image/goblin.png" alt="profile-image">
+    <h3>{{ monster.monsterName }}</h3>
+    <p class="monster-role"> {{ monster.role }} </p>
+    <button *ngIf="!isFriend ; else deleteAction" class="action-btn" (click)="onAddFriend()"> Ajouter</button>
+    <ng-template #deleteAction>
+        <button class="action-btn" (click)="onDeleteFriend()"> Supprimer</button>
+    </ng-template>
+</div>

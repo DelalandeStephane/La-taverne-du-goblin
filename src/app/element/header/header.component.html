@@ -1,0 +1,8 @@
+<header class="main-header">
+    <h1>La taverne du goblin</h1>
+    <button 
+    *ngIf="isLogged()"
+    class="action-btn"
+    (click)="onLogout()"
+    >déconnexion</button>
+</header>

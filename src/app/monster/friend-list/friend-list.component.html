@@ -1,0 +1,3 @@
+<div class="monster-list">
+    <app-monster-card *ngFor="let monster of monsters$ | async" [monster]="monster" [isFriend]="true"></app-monster-card>
+</div>

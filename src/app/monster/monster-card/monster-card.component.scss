@@ -1,0 +1,22 @@
+.monster-card {
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    margin: 15px;
+}
+
+.profile-img {
+    margin-top: 15px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.action-btn {
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}

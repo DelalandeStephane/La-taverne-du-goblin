@@ -1,0 +1,44 @@
+<form class="signup-form" 
+*ngIf="!inscriptionSuccess; else SuccesBlock"
+novalidate 
+[formGroup]="newUserForm" 
+(ngSubmit)="onNewUserSubmit()">
+    <h2>Inscrivez-vous !!</h2>
+    <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Votre email" type="email" formControlName="email" required value="email">
+        <mat-error *ngIf="newUserForm.get('email')?.hasError('already-use')">
+            L'Email est déja utilisé
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput placeholder="votre mot de passe" type="password" formControlName="password" required value="password">
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="votre mot de passe" type="text" formControlName="monsterName" required value="userName">
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Rôle</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="guerrier">Guerrier</mat-option>
+          <mat-option value="alchimiste">Alchimiste</mat-option>
+          <mat-option value="sorcier">Sorcier</mat-option>
+          <mat-option value="espion">Espion</mat-option>
+          <mat-option value="enchanteur">Enchanteur</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button class="action-btn" type="submit">Envoyer</button>
+
+</form>
+
+<ng-template #SuccesBlock>
+    <div class="success-message">
+        <h2>Félicitation !!  vous voilà inscrit.</h2>
+        <a routerLink="/" class="redirect-link">Connectez-vous pour accèder à votre espace</a>
+    </div>
+</ng-template>

@@ -1,0 +1,6 @@
+
+<h2>Trouvez des copains goblins</h2>
+<button class="action-btn" (click)="onReturnDashboard()">Retour profil</button>
+<div class="monster-list">
+    <app-monster-card *ngFor="let monster of monsters$ | async" [monster]="monster"></app-monster-card>
+</div>
