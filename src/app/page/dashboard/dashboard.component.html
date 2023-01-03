@@ -5,4 +5,5 @@
     <mat-tab label="Votre profil"><app-profile *ngIf="monster$ | async as monster" [monster]="monster"></app-profile></mat-tab>
     <mat-tab label="Vos amis"><app-friend-list></app-friend-list></mat-tab>
     <mat-tab label="Modifier profil"><app-update-profile *ngIf="monster$ | async as monster" [monster]="monster"></app-update-profile></mat-tab>
+    <mat-tab label="Ajouter un ami"><app-sign-up></app-sign-up></mat-tab>
 </mat-tab-group>

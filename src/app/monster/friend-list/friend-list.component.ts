@@ -23,7 +23,6 @@ export class FriendListComponent implements OnInit {
     this.monsters$ = this.monsterService.getFriends().pipe(
       map((monsters) => {
         let i = 0
-        console.log(monsters)
         monsters.forEach((monster: Monster) => {
           // if actual user
     

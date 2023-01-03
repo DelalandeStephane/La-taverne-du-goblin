@@ -24,7 +24,7 @@ export class AuthService {
 
     monster.createdAt = new Date();
      return this.http
-       .post< Monster | boolean>(`${environment.baseUrl}/auth/sign-up`,monster);
+       .post< Monster >(`${environment.baseUrl}/auth/sign-up`,monster);
    }
 
    public  signIn(loginData: any) {

@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     }
       const value = this.loginForm.value;
       this.authService.signIn(value).subscribe(auth => {
-          console.log('check');
           if(!auth){return;} 
         
             this.authService.isLogged(auth);

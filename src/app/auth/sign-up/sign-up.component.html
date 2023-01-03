@@ -2,13 +2,14 @@
 *ngIf="!inscriptionSuccess; else SuccesBlock"
 novalidate 
 [formGroup]="newUserForm" 
-(ngSubmit)="onNewUserSubmit()">
+(ngSubmit)="onNewUserSubmit()"
+#signUpForm="ngForm">
     <h2>Inscrivez-vous !!</h2>
     <mat-form-field class="form-field" appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Votre email" type="email" formControlName="email" required value="email">
         <mat-error *ngIf="newUserForm.get('email')?.hasError('already-use')">
-            L'Email est déja utilisé
+            L'email est déja utilisé
         </mat-error>
       </mat-form-field>
 

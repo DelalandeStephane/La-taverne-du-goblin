@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { MonsterService } from 'src/app/monster/monster.service';
+import { Monster } from 'src/app/models/monster.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,8 +13,11 @@ export class SignUpComponent implements OnInit {
 
   newUserForm!: FormGroup; 
   inscriptionSuccess!: boolean;
+  monster!: Monster;
 
-  constructor( private fb: FormBuilder, private authService : AuthService, private router: Router) { }
+  constructor( private fb: FormBuilder, 
+    private authService : AuthService, 
+   private monsterService : MonsterService) { }
 
   ngOnInit(): void {
     this.inscriptionSuccess = false;
@@ -36,18 +40,44 @@ export class SignUpComponent implements OnInit {
     }
  }
 
+  onAddFriend(id : string){
+    this.monsterService.addFriend(id).subscribe()
+  }
   onNewUserSubmit() {
 
     if (this.newUserForm.invalid) {return;}
+
+    this.authService.verifyEmail(this.newUserForm.value.email).subscribe((monster) => {
+      if( monster) {
+        this.newUserForm.get('email')?.setErrors({'already-use': true});
+        this.newUserForm.get('email')?.markAsTouched();
+        return;
+      }
+      // If email is available 
+      this.authService.signUp(this.newUserForm.value)
+      .subscribe((monster) => {
+
+        this.monster = monster;
+
+        // In case user add friend by himself
+          if(sessionStorage.getItem('auth-id')) {
+
+            this.onAddFriend(this.monster._id);
+            this.newUserForm.reset();
+            //fix clear mat error 
+            Object.keys(this.newUserForm.controls).forEach(key => {
+              this.newUserForm.get(key)?.setErrors(null) ;
+
+            });
     
-    this.authService.signUp(this.newUserForm.value).subscribe(response => {
-        if(response) {
-          this.newUserForm.get('email')?.setErrors({'already-use': true});
-          this.newUserForm.get('email')?.markAsTouched();
-          return;
-        }
-        this.inscriptionSuccess = true;
-     });
+          } else {
+            this.inscriptionSuccess = true;
+          }
+   
+       });
+
+    })
+    
   }
 
 }
